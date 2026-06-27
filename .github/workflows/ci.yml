@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    name: Backend — lint + tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Lint (ruff)
+        run: ruff check .
+
+      - name: Tests (pytest)
+        run: pytest
+
+  frontend:
+    name: Frontend — lint + typecheck + tests + build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install
+        # Use `npm install`, not `npm ci`: npm ci can hard-fail with EBADPLATFORM on
+        # cross-platform optional native deps (e.g. @rolldown/binding-*) when the
+        # lockfile was generated on a different OS. npm install skips the non-matching
+        # optional binaries correctly and still installs the ones for this platform.
+        run: npm install --no-audit --no-fund
+
+      - name: Lint (eslint)
+        run: npm run lint
+
+      - name: Typecheck (vue-tsc)
+        run: npm run typecheck
+
+      - name: Tests (vitest)
+        run: npm run test
+
+      - name: Build
+        run: npm run build

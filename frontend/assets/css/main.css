@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-neutral-50 text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100;
+  }
+}
+
+@layer components {
+  .equitie-shell {
+    @apply min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100;
+  }
+
+  .equitie-panel {
+    @apply rounded-lg border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/70;
+  }
+
+  .equitie-stat-label {
+    @apply text-[11px] font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400;
+  }
+
+  .equitie-stat-value {
+    @apply font-mono text-lg font-semibold tabular-nums break-words text-equitie-blue-dark sm:text-xl lg:text-2xl dark:text-equitie-blue;
+  }
+
+  .equitie-num {
+    @apply font-mono tabular-nums;
+  }
+
+  .equitie-chip {
+    @apply inline-flex items-center rounded px-2 py-0.5 text-xs font-medium;
+  }
+
+  .equitie-btn {
+    @apply rounded-md bg-equitie-blue-dark px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-equitie-blue-deep disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .equitie-input {
+    @apply rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm dark:border-neutral-700 dark:bg-neutral-900;
+  }
+
+  .equitie-table {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .equitie-table th {
+    @apply border-b border-neutral-200 px-2 py-1.5 text-left text-[11px] font-medium uppercase tracking-wide text-neutral-500 dark:border-neutral-800;
+  }
+
+  .equitie-table td {
+    @apply border-b border-neutral-100 px-2 py-1.5 dark:border-neutral-800/60;
+  }
+
+  .equitie-icon-btn {
+    @apply inline-flex h-6 w-6 items-center justify-center rounded-md border border-neutral-300 text-sm text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-100;
+  }
+
+  /* Rendered (sanitised) Markdown from the assistant. */
+  .equitie-markdown {
+    @apply text-sm leading-relaxed;
+  }
+  .equitie-markdown :where(p) {
+    @apply my-1.5;
+  }
+  .equitie-markdown :where(p):first-child {
+    @apply mt-0;
+  }
+  .equitie-markdown :where(p):last-child {
+    @apply mb-0;
+  }
+  .equitie-markdown :where(h1, h2, h3, h4) {
+    @apply mb-1 mt-3 text-sm font-semibold;
+  }
+  .equitie-markdown :where(ul) {
+    @apply my-1.5 list-disc space-y-1 pl-5;
+  }
+  .equitie-markdown :where(ol) {
+    @apply my-1.5 list-decimal space-y-1 pl-5;
+  }
+  .equitie-markdown :where(li) {
+    @apply marker:text-neutral-400;
+  }
+  .equitie-markdown :where(strong) {
+    @apply font-semibold text-equitie-blue-dark dark:text-equitie-blue;
+  }
+  .equitie-markdown :where(code) {
+    @apply rounded bg-neutral-200 px-1 py-0.5 font-mono text-xs dark:bg-neutral-800;
+  }
+  .equitie-markdown :where(hr) {
+    @apply my-2 border-neutral-200 dark:border-neutral-700;
+  }
+  .equitie-markdown :where(a) {
+    @apply text-equitie-blue underline underline-offset-2;
+  }
+  .equitie-markdown :where(table) {
+    @apply my-2 w-full text-xs;
+  }
+  .equitie-markdown :where(th, td) {
+    @apply border-b border-neutral-200 px-1.5 py-1 text-left dark:border-neutral-800;
+  }
+  .equitie-markdown :where(blockquote) {
+    @apply border-l-2 border-neutral-300 pl-3 text-neutral-500 dark:border-neutral-700;
+  }
+}
