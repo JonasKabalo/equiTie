@@ -7,6 +7,8 @@ distributions and account statement — citing the dataset rows behind every num
 > Report date is **2026-06-25** (treated as "today" for any upcoming/current figure).
 > Everything is computed from the provided synthetic dataset in [`data/`](data/).
 
+https://github.com/user-attachments/assets/90976f4e-ef29-4c3a-a8f0-818288bcc1c5
+
 ## Architecture
 
 The design quarantines the numbers from the model:
