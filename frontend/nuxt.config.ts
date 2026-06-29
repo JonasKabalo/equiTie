@@ -17,6 +17,25 @@ export default defineNuxtConfig({
   experimental: {
     appManifest: false,
   },
+  vite: {
+    optimizeDeps: {
+      // These deps are only reached from the dashboard route. Without pre-bundling
+      // them at dev-server startup, the first navigation makes Vite discover and
+      // re-optimise them mid-request — it returns a 504 "Outdated Optimize Dep",
+      // the route's dynamic import rejects, and the click silently does nothing
+      // (you have to click again once optimisation finishes). Production builds
+      // pre-bundle everything via Rollup, so this only bites in `nuxt dev`.
+      include: [
+        'markdown-it',
+        'dompurify',
+        'vue-echarts',
+        'echarts/core',
+        'echarts/charts',
+        'echarts/components',
+        'echarts/renderers',
+      ],
+    },
+  },
   runtimeConfig: {
     // Override at runtime with NUXT_PUBLIC_API_BASE (Nuxt maps it automatically).
     public: {
